@@ -14,30 +14,22 @@ def next_magic_num(number):
         middle = (numberLength // 2) + 1
     
     digits = list(strNumber)
-    
-    result_val = modifyString(numberLength, digits)
-    
-    if result_val <= number:
-        left_part = "".join(digits[:middle])
-        new_left = str(int(left_part) + 1)
-        
-        if numberLength % 2 == 0:
-            new_magic = new_left + new_left[::-1]
-        else:
-            new_magic = new_left + new_left[:-1][::-1]
-        return int(new_magic)
-    
-    return result_val
 
-def modifyString(numberLength, digits_list) -> int:
+    for i in range(middle):
+        digits[numberLength-1-i] = digits[i]
     
-    temp_digits = list(digits_list)
-    right_idx = (numberLength + 1) // 2
+    mirrored = "".join(digits)
     
-    for i in range(right_idx, numberLength):
-        temp_digits[i] = temp_digits[numberLength - 1 - i]
+    if mirrored <= strNumber:
+        left = str(int(strNumber[:middle])+1)
+        if numberLength % 2 == 0:
+            return int(left + left[::-1])
+        else:
+            return int(left + left[:-1][::-1])
     
-    return int("".join(temp_digits))
+    return int(mirrored)
+
+
 
 def main():
     data = (Path(__file__).parent / "input.txt").read_text(encoding="utf-8")
