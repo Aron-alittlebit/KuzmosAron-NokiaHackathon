@@ -38,5 +38,5 @@ def modifyString(numberLength, digits_list) -> int:
 
 print(next_magic_num(808))  
 print(next_magic_num(2133))  
-print(next_magic_num(999))   
-print(next_magic_num(120))   
+print(next_magic_num(1000))   
+print(next_magic_num(123))   
