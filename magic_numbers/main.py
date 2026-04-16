@@ -55,14 +55,5 @@ def main():
 
 
 if __name__ == "__main__":
-    time_sum = 0
-    for _ in range(2500):
-        t0 = time.perf_counter_ns()
-        main()
-        t1 = time.perf_counter_ns()
-        time_sum += t1 - t0
-    
-    time_avg = time_sum / 2500
-    
-    print(f"ran in {time_avg:.10f} ns")
+    main()
 
