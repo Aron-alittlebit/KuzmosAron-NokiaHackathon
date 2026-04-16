@@ -1,3 +1,4 @@
+import time
 from pathlib import Path
 
 def next_magic_num(number):
@@ -48,11 +49,20 @@ def main():
             left_part, right_part = line.split('^')
             number = pow(int(left_part), int(right_part))
         else:
-            number = int(line)
+            number = int(line)       
         print(next_magic_num(number))   
 
 
 
 if __name__ == "__main__":
-    main()
+    time_sum = 0
+    for _ in range(2500):
+        t0 = time.perf_counter_ns()
+        main()
+        t1 = time.perf_counter_ns()
+        time_sum += t1 - t0
+    
+    time_avg = time_sum / 2500
+    
+    print(f"ran in {time_avg:.10f} ns")
 
