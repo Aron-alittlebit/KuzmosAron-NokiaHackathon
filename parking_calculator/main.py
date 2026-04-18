@@ -1,5 +1,6 @@
 from pathlib import Path
 from datetime import datetime
+import math
 
 
 def parsing(arrival, departure):
@@ -32,11 +33,11 @@ def FeeCalculation(period):
     if restMinutes > 180:
         restMinutes -= 180
         fee += 180 * 5
-        fee += restMinutes * 500/60
+        fee += math.ceil(restMinutes/60) * 500
     else:
         fee += restMinutes * 5   
         
-    return fee
+    return int(round(fee))
 
 def main():
     file_path = Path("input.txt")

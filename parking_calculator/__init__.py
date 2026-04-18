@@ -1,4 +1,5 @@
 from datetime import datetime
+import math
 
 def parsing(arrival, departure):
     format_string = "%Y-%m-%d %H:%M:%S"
@@ -30,13 +31,13 @@ def FeeCalculation(period):
     if restMinutes > 180:
         restMinutes -= 180
         fee += 180 * 5
-        fee += restMinutes * 500/60
+        fee += math.ceil(restMinutes/60) * 500
     else:
         fee += restMinutes * 5   
-        
+
     print(fee)
 
-FeeCalculation(1800)
+FeeCalculation(240)
 FeeCalculation(85.35)
 
 
