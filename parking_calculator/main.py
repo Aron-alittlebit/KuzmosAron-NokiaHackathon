@@ -32,7 +32,7 @@ def FeeCalculation(period):
     
     if restMinutes > 180:
         restMinutes -= 180
-        fee += 180 * 5
+        fee += math.ceil(180 / 60) * 300 
         fee += math.ceil(restMinutes/60) * 500
     else:
         fee += math.ceil(restMinutes/60) * 300  
