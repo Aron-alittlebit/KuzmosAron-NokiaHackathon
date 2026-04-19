@@ -12,25 +12,27 @@ def parsing(arrival, departure):
     return diff.total_seconds() / 60
 
 def FeeCalculation(period):
-    fee = 0
     if period <= 30:
         return 0
-    
+
     days = period // 1440
     restMinutes = period % 1440
-    fee += days * 10000
+    fee = days * 10000
 
-    if restMinutes >= 30:
-        restMinutes -= 30
-    else:
-        return int(round(fee))
+    if restMinutes <= 30:
+        return int(fee)
+
+    restMinutes -= 30
+
     if restMinutes > 180:
         restMinutes -= 180
-        fee += 3 * 300
-        fee += math.ceil(restMinutes / 60) * 500
+        rest_fee = 900 + math.ceil(restMinutes / 60) * 500
     else:
-        fee += math.ceil(restMinutes / 60) * 300
-    return int(round(fee))
+        rest_fee = math.ceil(restMinutes / 60) * 300
+
+    fee += min(rest_fee, 10000)
+
+    return int(fee)
 
 def main():
     file_path = Path("input.txt")
