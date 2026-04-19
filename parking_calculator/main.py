@@ -38,9 +38,9 @@ def main():
     BASE_DIR = Path(__file__).resolve().parent
     data = (BASE_DIR / "input.txt").read_text(encoding="utf-8")
     
-    with open(BASE_DIR / "fees.txt", "w", encoding="utf-8") as f:
-        f.write("RENDSZAM\tDIJ\n")
-        print("RENDSZAM\tDIJ")
+    with open(BASE_DIR / "output.txt", "w", encoding="utf-8") as f:
+        f.write("License plate\tFee\n")
+        print("Licence playte\tFee")
         
         for line in data.splitlines()[2:]:
             parts = line.split()
