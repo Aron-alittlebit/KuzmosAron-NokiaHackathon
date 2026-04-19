@@ -8,7 +8,7 @@ def sanitize_key(key: str) -> str:
 
 
 def parse_ipconfig(filename: str, raw_text: str) -> Dict[str, str | List[str]]:
-    result = {"filename": filename, "adapters": []}
+    result = {"file_name": filename, "adapters": []}
     current_adapter: Optional[Dict[str, str | List[str]]] = None
     last_key: Optional[str] = None
 
@@ -30,8 +30,8 @@ def parse_ipconfig(filename: str, raw_text: str) -> Dict[str, str | List[str]]:
 
             if last_key is not None and ":" not in stripped:
                 if type(current_adapter[last_key]) == str:
-                    current_adapter[last_key] = [current_adapter[last_key], stripped]  # type: ignore
-                current_adapter[last_key].append(stripped)  # type: ignore
+                    current_adapter[last_key] = [current_adapter[last_key], stripped]  
+                current_adapter[last_key].append(stripped)  
                 continue
 
             if ":" not in line:

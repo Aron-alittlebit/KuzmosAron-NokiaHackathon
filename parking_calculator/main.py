@@ -64,7 +64,5 @@ def main():
             else:
                 out.write(f"{license_plate}: HIBA (Időrend)\n")
 
-    print("\nAz eredmények elmentve a parking_results.txt fájlba.")
-
 if __name__ == "__main__":
     main()
