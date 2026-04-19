@@ -41,7 +41,7 @@ def main():
         print("Hiba: Az input.txt fájl nem található!")
         return
 
-    #print(f"Rendszam \t DIJ")
+    print(f"Rendszam \t DIJ")
 
     with file_path.open(encoding="utf-8") as f, Path("parking_results.txt").open("w", encoding="utf-8") as out:
         next(f)
@@ -60,8 +60,8 @@ def main():
             if minutes is not None:
                 fee = FeeCalculation(minutes)
                 out.write(f"{license_plate}: {fee} Ft\n")
-                #print(f"{license_plate} \t {fee}")
-                print(f"{fee}")
+                print(f"{license_plate} \t {fee}")
+                
             else:
                 out.write(f"{license_plate}: HIBA (Időrend)\n")
 
