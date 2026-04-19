@@ -40,7 +40,7 @@ def main():
     
     with open(BASE_DIR / "output.txt", "w", encoding="utf-8") as f:
         f.write("License plate\tFee\n")
-        print("Licence playte\tFee")
+        print("License plate\tFee")
         
         for line in data.splitlines()[2:]:
             parts = line.split()
