@@ -35,35 +35,29 @@ def FeeCalculation(period):
     return int(fee)
 
 def main():
-    file_path = Path("input.txt")
+    BASE_DIR = Path(__file__).resolve().parent
+    data = (BASE_DIR / "input.txt").read_text(encoding="utf-8")
+    
+    with open(BASE_DIR / "fees.txt", "w", encoding="utf-8") as f:
+        f.write("RENDSZAM\tDIJ\n")
+        print("RENDSZAM\tDIJ")
+        
+        for line in data.splitlines()[2:]:
+            parts = line.split()
 
-    if not file_path.exists():
-        print("Hiba: Az input.txt fájl nem található!")
-        return
+            license_plate = parts[0]
+            start = parts[1] + " " + parts[2]
+            end = parts[3] + " " + parts[4]
+            
+            fee = FeeCalculation(parsing(start, end))
 
-    print(f"Rendszam \t DIJ")
-
-    with file_path.open(encoding="utf-8") as f, Path("parking_results.txt").open("w", encoding="utf-8") as out:
-        next(f)
-        next(f)
-        for line in f:
-            if not line.strip():
-                continue
-            parts = line.split("\t\t")
-            if len(parts) != 3:
-                print(f"invalid data: {line}")
-                continue
-            license_plate = parts[0].strip()
-            arrival = parts[1].strip()
-            departure = parts[2].strip()
-            minutes = parsing(arrival, departure)
-            if minutes is not None:
-                fee = FeeCalculation(minutes)
-                out.write(f"{license_plate}: {fee} Ft\n")
-                print(f"{license_plate} \t {fee}")
-                
+            if fee == -1:
+                result = f"{license_plate}\t\tNem parkolt"
             else:
-                out.write(f"{license_plate}: HIBA (Időrend)\n")
+                result = f"{license_plate}\t\t{fee}"
+
+            print(result)
+            f.write(result + "\n")
 
 if __name__ == "__main__":
     main()
