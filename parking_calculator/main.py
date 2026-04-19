@@ -51,10 +51,7 @@ def main():
             
             fee = FeeCalculation(parsing(start, end))
 
-            if fee == -1:
-                result = f"{license_plate}\t\tNem parkolt"
-            else:
-                result = f"{license_plate}\t\t{fee}"
+            result = f"{license_plate}\t\t{fee}"
 
             print(result)
             f.write(result + "\n")
